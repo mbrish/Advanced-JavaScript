@@ -32,19 +32,53 @@ const array = [-1, 0, 3, 100, 99, 2, 99]; // should return 100
 const array2 = ["a", 3, 4, 2]; // should return 4
 const array3 = []; // should return 0
 
-function biggestNumberInArray() {
-  let max = array[0];
-  for (let item of array) {
+function biggestNumberInArray(arr) {
+  if (arr.length === 0) {
+    return 0;
+  }
+
+  let max = arr[0];
+  for (let item of arr) {
     if (item > max) {
       max = item;
     }
   }
-  console.log(max);
+  return max;
 }
 
-function biggestNumberInArray2(arr) {}
+console.log(biggestNumberInArray(array)); // should return 100
+console.log(biggestNumberInArray(array2)); // should return 4
+console.log(biggestNumberInArray(array3)); // should return 0
 
-function biggestNumberInArray3(arr) {}
+function biggestNumberInArray2(arr) {
+  if (arr.length === 0) {
+    return 0;
+  }
+  let max = arr[0];
+  arr.forEach((item) => {
+    if (item > max) {
+      max = item;
+    }
+  });
+  return max;
+}
+
+console.log(biggestNumberInArray(array)); // should return 100
+console.log(biggestNumberInArray(array2)); // should return 4
+console.log(biggestNumberInArray(array3)); // should return 0
+
+function biggestNumberInArray3(arr) {
+  if (arr.length === 0) {
+    return 0;
+  }
+  let max = arr[0];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > max) {
+      max = i;
+    }
+  }
+  return max;
+}
 
 // Question #2:
 // Write a function checkBasket() that lets you know if the item is in the basket or not
@@ -54,4 +88,16 @@ amazonBasket = {
   floss: 100,
 };
 
-function checkBasket(basket, lookingFor) {}
+function checkBasket(basket) {
+  const lookingFor = prompt("What are you looking for?");
+  for (const item in basket) {
+    if (item === lookingFor) {
+      console.log("Your item is in the basket!");
+      return; // Exit the function once the item is found.
+      //Prevents "No luck this time" from being printed multiple times
+    }
+  }
+  console.log("No luck this time!");
+}
+
+checkBasket(amazonBasket);
